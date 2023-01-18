@@ -1,3 +1,7 @@
+'''
+This is an example of a decorator code.
+'''
+
 import time
 
 def time_taken(func):

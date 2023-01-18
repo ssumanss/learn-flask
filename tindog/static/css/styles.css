@@ -1,0 +1,76 @@
+h1 {
+    font-family: 'Ubuntu';
+    font-size: 4rem;
+    line-height: 1.5;
+}
+
+.btn {
+    margin: 5% 3% 5% 0%;
+}
+
+.title-image {
+    width: 20%;
+    transform: rotate(25deg);
+    position: absolute;
+}
+
+#features {
+    padding: 7% 8%;
+    background-color: white;
+    position: relative;
+    z-index: 1;
+}
+
+.feature-box {
+    text-align: center;
+    padding: 3%;
+}
+
+h3 {
+    font-weight: bold;
+}
+
+.feature-box p {
+    color: grey;
+}
+
+.icon-size {
+    font-size: 3em;
+    color: brown;
+    margin-bottom: 2%;
+}
+
+h2 {
+    font-weight: bold;
+    line-height: 1.5;
+    padding: 2% 10%;
+}
+
+.testimonial-image {
+    width: 100px;
+    border-radius: 100%;
+    margin: 20px;
+}
+
+.press-logo {
+    width: 200px;
+    margin: 5%;
+}
+
+#cta {
+    background-color: brown;
+    padding: 7% 15%;
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.cta-buttion {
+    margin-top: 1%;
+}
+
+#footer {
+    text-align: center;
+    font-family: monospace;
+    padding-top: 1%;
+}

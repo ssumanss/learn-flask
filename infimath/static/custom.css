@@ -1,0 +1,31 @@
+.slider .indicators .indicator-item.active{
+    background-color: teal;
+}
+
+.parent {
+    position: relative;
+    width: auto;
+    height: 450px;
+    pointer-events:none; 
+}
+
+.slider{
+    position: relative;
+}
+
+.slides.a {
+    position: absolute;
+}
+
+.mynav {
+    pointer-events:auto;
+    position:absolute;  
+    z-index: 1;
+    width:100%;
+    height:50px;
+    text-align:right;
+    padding-right: 20px;
+    vertical-align:middle;
+    line-height:50px;
+    top:0px;
+}
