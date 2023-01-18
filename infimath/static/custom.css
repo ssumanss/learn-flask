@@ -1,31 +1,43 @@
-.slider .indicators .indicator-item.active{
-    background-color: teal;
+.slider .indicators .indicator-item.active {
+  background-color: teal;
 }
 
-.parent {
-    position: relative;
-    width: auto;
-    height: 450px;
-    pointer-events:none; 
+.course-content {
+  margin-top: 1%;
+  border: 1px;
+  text-align: center;
 }
 
-.slider{
-    position: relative;
+.navigation-title {
+  vertical-align: 50%;
 }
 
-.slides.a {
-    position: absolute;
+/* login page */
+#panell {
+  margin-top: 100px;
+  padding: 0px;
 }
-
-.mynav {
-    pointer-events:auto;
-    position:absolute;  
-    z-index: 1;
-    width:100%;
-    height:50px;
-    text-align:right;
-    padding-right: 20px;
-    vertical-align:middle;
-    line-height:50px;
-    top:0px;
+#loginbtn {
+  float: right;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+#title {
+  background-color: #2bbbad;
+  color: white;
+  padding: 8px;
+  margin-top: 0px;
+}
+form {
+  padding: 0px;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+#username,
+#password {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+#checkbox {
+  margin-left: 30px;
 }
