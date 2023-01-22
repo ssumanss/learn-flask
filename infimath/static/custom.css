@@ -8,36 +8,54 @@
   text-align: center;
 }
 
-.navigation-title {
-  vertical-align: 50%;
+/* .navigation-title {
+  vertical-align: 100%;
+} */
+
+.task-list-item {
+  list-style-type: none !important;
 }
 
-/* login page */
-#panell {
-  margin-top: 100px;
-  padding: 0px;
+.task-list-item input[type="checkbox"] {
+  margin: 0 4px 0.25em -20px;
+  vertical-align: middle;
 }
-#loginbtn {
-  float: right;
-  margin-bottom: 10px;
-  margin-right: 10px;
+
+.task-list-control {
+  display: inline; /* Ensure label is inline incase theme sets it to block.*/
 }
-#title {
-  background-color: #2bbbad;
-  color: white;
-  padding: 8px;
-  margin-top: 0px;
+
+.task-list-control {
+  position: relative;
+  display: inline-block;
+  color: #555;
+  cursor: pointer;
 }
-form {
-  padding: 0px;
-  border-radius: 3px;
-  box-sizing: border-box;
+
+.task-list-control input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  z-index: -1; /* Put the input behind the label so it doesn't overlay text */
 }
-#username,
-#password {
-  margin-left: 20px;
-  margin-right: 20px;
+
+.task-list-indicator {
+  position: absolute;
+  top: -8px;
+  left: -18px;
+  display: block;
+  width:  14px;
+  height: 14px;
+  color: #eee;
+  background-color: #eee;
+  border-radius: .25rem;
 }
-#checkbox {
-  margin-left: 30px;
+
+.task-list-control input[type="checkbox"]:checked + .task-list-indicator::before {
+  display: block;
+  margin-top: -4px;
+  margin-left: 2px;
+  font-size: 16px;
+  line-height: 1;
+  content: "✔";
+  color: #1EBB52;
 }

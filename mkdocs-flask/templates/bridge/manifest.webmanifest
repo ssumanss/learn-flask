@@ -1,0 +1,21 @@
+{
+    "short_name": "Algebra",
+    "name": "Abstract Algebra",
+    "description": "This webpage is dedicated to the course of Abstract Algebra taught in sememster I for the degree of MA/MSc in Mathematics in TMBU, Bhagalpur.",
+    "icons": [
+      {
+        "src": "static/images/icons-192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "static/images/icons-512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "./?homescreen=1",
+    "background_color": "#3367D6",
+    "display": "standalone",
+    "theme_color": "#3367D6"
+  }

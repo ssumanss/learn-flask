@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}" />
+  <title>❤ Sandeep Suman's Page</title>
+
+  <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js"
+    integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
+  <script src="{{ url_for('static', filename='auto-tables.js') }}"></script>
+</head>
+<body>
+  <section class="admin-page">
+    <div class="container">
+      <h1 class="center-align">Admin Page</h1>
+      <div class="divider z-depth-1"></div>
+      <div class="section z-depth-0">
+        <div class="row">
+          <form action="{{ url_for('admin') }}" method="post" class="col s12">
+            <div class="row">
+              <div class="input-field col s5">
+                <i class="material-icons prefix">account_circle</i>
+                <input type="text" name="username" placeholder="Username" required="required" />
+              </div>
+              <div class="input-field col s5">
+                <i class="material-icons prefix">security</i>
+                <input type="password" name="password" placeholder="Password" required="required" />
+              </div>
+              <div class="input-filed col s2">
+                <button type="submit" class="btn btn-primary btn-block btn-large">ADD</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <h4>List Users</h4>
+      <input type="text" class="form-control mb-3 tablesearch-input" data-tablesearch-table="#data-table"
+        placeholder="Search">
+
+      <div class="responsive-table">
+
+        <table id="data-table" class="table tablesearch-table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Username</th>
+              <th>Course</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+            <tr>
+              <td>{{ user.id }}</td>
+              <td>{{ user.username }}</td>
+              <td>None</td>
+            </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+  </section>
+</body>
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+  $(document).ready(function () {
+    var headers = $('#data-table thead th');
+    $(headers[5]).attr('data-tablesort-type', 'date');
+    $('table').not(".tablesort").addClass('tablesort');
+    // $('')
+  });
+</script>
+
+</html>
