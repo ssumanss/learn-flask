@@ -24,15 +24,21 @@
         <div class="row">
           <form action="{{ url_for('admin') }}" method="post" class="col s12">
             <div class="row">
-              <div class="input-field col s5">
+              <div class="input-field col s6">
                 <i class="material-icons prefix">account_circle</i>
                 <input type="text" name="username" placeholder="Username" required="required" />
               </div>
-              <div class="input-field col s5">
+              <div class="input-field col s6">
                 <i class="material-icons prefix">security</i>
                 <input type="password" name="password" placeholder="Password" required="required" />
               </div>
-              <div class="input-filed col s2">
+              <div class="input-field col s3">
+                <label>
+                  <input type="checkbox" class="filled-in" name="linear_algebra"/>
+                  <span>Linear Algebra</span>
+                </label>
+              </div>
+              <div class="input-filed col s6 offset-s3">
                 <button type="submit" class="btn btn-primary btn-block btn-large">ADD</button>
               </div>
             </div>
@@ -45,13 +51,13 @@
         placeholder="Search">
 
       <div class="responsive-table">
-
-        <table id="data-table" class="table tablesearch-table table-bordered table-striped">
+        <table id="data-table" class="table-striped">
           <thead>
             <tr>
               <th>ID</th>
               <th>Username</th>
-              <th>Course</th>
+              <th>Linear Algebra</th>
+              <th>Abstract Algebra</th>
             </tr>
           </thead>
           <tbody>
@@ -59,10 +65,49 @@
             <tr>
               <td>{{ user.id }}</td>
               <td>{{ user.username }}</td>
-              <td>None</td>
+              <!-- linear algebra -->
+              <td>
+                <!-- Switch -->
+                <div class="switch">
+                  <form action="{{ url_for('admin') }}" method="post">
+                    <label>
+                      No
+                      {% if user.linear_algebra == True %}
+                      <input type='hidden' value="{{ user.id }}" name="linear_algebra">
+                      <input checked type="checkbox" onChange="this.form.submit()">
+                      <span class="lever"></span>
+                      {% else %}
+                      <input type="checkbox" name="linear_algebra" value="{{ user.id }}" onChange="this.form.submit()">
+                      <span class="lever"></span>
+                      {% endif %}
+                      Yes
+                    </label>
+                  </form>
+                </div>
+              </td>
+              <!-- linear algebra -->
+              <td>
+                <!-- Switch -->
+                <div class="switch">
+                  <form action="{{ url_for('admin') }}" method="post">
+                    <label>
+                      No
+                      {% if user.abstract_algebra == True %}
+                      <input type='hidden' value="{{ user.id }}" name="abstract_algebra">
+                      <input checked type="checkbox" onChange="this.form.submit()">
+                      <span class="lever"></span>
+                      {% else %}
+                      <input type="checkbox" name="abstract_algebra" value="{{ user.id }}" onChange="this.form.submit()">
+                      <span class="lever"></span>
+                      {% endif %}
+                      Yes
+                    </label>
+                  </form>
+                </div>
+              </td>
             </tr>
             {% endfor %}
-
+      
           </tbody>
         </table>
       </div>

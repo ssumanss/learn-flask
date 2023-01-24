@@ -32,7 +32,7 @@
               <a class="waves-effect waves-light btn">button</a>
             </div>
             <div class="caption center-align">
-              <h3>Welcome Sandeep!</h3>
+              <h3>Welcome {{ user.username }}!</h3>
               <h5 class="light grey-text text-lighten-3">
                 “Being a student is easy. Learning requires actual work.” <br />
                 —William Crawford.
@@ -83,6 +83,8 @@
       <div class="section white center">
         <h2 class="header">Enrolled Courses</h2>
         <div class="row container center">
+          <!-- course card -->
+          {% if user.linear_algebra %}
           <div class="col center l3 m4 s12">
             <div class="card">
               <div class="card-image">
@@ -100,6 +102,9 @@
               </div>
             </div>
           </div>
+          {% endif %}
+
+          {% if user.abstract_algebra %}
           <div class="col center l3 m4 s12">
             <div class="card">
               <div class="card-image">
@@ -107,16 +112,17 @@
                   height="200px"
                   src="https://images.unsplash.com/photo-1621237644919-a21d46e1cabf"
                 />
-                <span class="card-title">Linear Algebra</span>
+                <span class="card-title">Abstract Algebra</span>
               </div>
               <div class="card-content">
-                <p>Linear Algebra 101</p>
+                <p>Abstract Algebra 101</p>
               </div>
               <div class="card-action">
-                <a href="#">Go to the Course</a>
+                <a href="/abstract-algebra">Go to the Course</a>
               </div>
             </div>
           </div>
+          {% endif %}
           <div class="col center l3 m4 s12">
             <div class="card">
               <div class="card-image">
