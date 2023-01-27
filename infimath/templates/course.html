@@ -13,7 +13,7 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="static/custom.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}" />
     <title>❤ Linear Algebra</title>
   </head>
   <body>
@@ -34,61 +34,18 @@
           <li class="bold">
             <a href="{{ url_for('home') }}" class="waves-effect waves-teal"><i class="material-icons">home</i>Home</a>
           </li>
+          {%  for item in navigation %}
+          {% for key, value in item.items() %}
           <li class="bold">
-            <a href="getting-started.html" class="waves-effect waves-teal"
-              >Linear Algebra</a
-            >
+            <a href="{{ value[:-3] }}" class="waves-effect waves-teal">{{  key }}</a>
           </li>
-          <li class="no-padding">
-            <ul class="collapsible collapsible-accordion">
-              <li class="bold">
-                <a class="collapsible-header waves-effect waves-teal">CSS</a>
-                <div class="collapsible-body">
-                  <ul>
-                    <li><a href="color.html">Color</a></li>
-                    <li><a href="grid.html">Grid</a></li>
-                    <li><a href="helpers.html">Helpers</a></li>
-                    <li><a href="media-css.html">Media</a></li>
-                    <li><a href="pulse.html">Pulse</a></li>
-                    <li><a href="sass.html">Sass</a></li>
-                    <li><a href="shadow.html">Shadow</a></li>
-                    <li><a href="table.html">Table</a></li>
-                    <li><a href="css-transitions.html">Transitions</a></li>
-                    <li><a href="typography.html">Typography</a></li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </li>
-          <li class="bold">
-            <a href="mobile.html" class="waves-effect waves-teal">Mobile</a>
-          </li>
-          <li class="bold">
-            <a href="showcase.html" class="waves-effect waves-teal">Showcase</a>
-          </li>
-          <li class="bold">
-            <a href="themes.html" class="waves-effect waves-teal">Themes</a>
-          </li>
+          {% endfor %}
+          {% endfor %}
         </ul>
       </div>
 
-      <div class="col center l9 m12 course-content">
-        <div class="video-container">
-          <iframe
-            width="853"
-            height="480"
-            src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0"
-            frameborder="0"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <h4>
-          <i class="medium material-icons">navigate_before</i>
-          <span class="navigation-title"
-            >Linear Algebra a verty long title about permutaiton matrix</span
-          >
-          <i class="medium material-icons">navigate_next</i>
-        </h4>
+      <div class="col l9 m12 container-fluid">
+        {{ content | safe }}
       </div>
     </div>
   </body>
@@ -99,5 +56,21 @@
   ></script>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="static/custom.js"></script>
+  <script src="{{ url_for('static', filename='custom.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
+  <script>
+    MathJax.Hub.Config({
+      config: ["MMLorHTML.js"],
+      extensions: ["tex2jax.js"],
+      jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+      tex2jax: {
+        inlineMath: [ ["\\(","\\)"] ],
+        displayMath: [ ["\\[","\\]"] ],
+        processEscapes: true,
+        processEnvironments: true,
+        ignoreClass: ".*|",
+        processClass: "arithmatex"
+      },
+    });
+  </script>
 </html>

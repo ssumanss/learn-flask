@@ -5,12 +5,14 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 from flask_migrate import Migrate
 import markdown, yaml
 
+db = SQLAlchemy()
+
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'secret-key-goes-here'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+db.init_app(app)
 migrate = Migrate(app, db)
 
 login_manager = LoginManager()
@@ -27,7 +29,10 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(100))
     linear_algebra = db.Column(db.Boolean, unique=False, default=True)
     abstract_algebra = db.Column(db.Boolean, unique=False, default=True)
-# db.create_all()
+
+
+with app.app_context():
+    db.create_all() 
 
 @app.route('/register', methods=["GET", "POST"])
 def register():
@@ -126,13 +131,13 @@ def home():
     return render_template("index.html", user=user)
 
 
-@app.route("/linear-algebra")
-@login_required
-def show_course():
-    if current_user.linear_algebra:
-        return render_template("course.html")
-    else:
-        return "You are not enrolled in the course. <strong>Contact administrator.</strong>"
+# @app.route("/linear-algebra")
+# @login_required
+# def show_course():
+#     if current_user.linear_algebra:
+#         return render_template("course.html")
+#     else:
+#         return "You are not enrolled in the course. <strong>Contact administrator.</strong>"
 
 
 @app.route("/abstract-algebra/<path:subpath>")
@@ -146,7 +151,7 @@ def abstract_algebra(subpath):
         input_file = open("/Users/sandeepsuman/Programs/flask-test/test1/infimath/abstract-algebra/{}.md".format(subpath), mode="r", encoding="utf-8")
         text = input_file.read()
         content = markdown.markdown(text, extensions=['tables', 'pymdownx.arithmatex', 'pymdownx.magiclink', 'pymdownx.tasklist'])
-        return render_template("linear.html", content=content, navigation=data)
+        return render_template("course.html", content=content, navigation=data)
     else:
         return "You are not enrolled in the course. <strong>Contact administrator.</strong>"
         
