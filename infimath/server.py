@@ -145,10 +145,10 @@ def home():
 def abstract_algebra(subpath):
     if current_user.abstract_algebra:
         # Open the file and load the file
-        with open('/Users/sandeepsuman/Programs/flask-test/test1/infimath//abstract-algebra/nav.yaml') as f:
+        with open('abstract-algebra/nav.yaml') as f:
             data = yaml.load(f, Loader=yaml.loader.SafeLoader)
         # files = os.listdir("./abstract-algebra")
-        input_file = open("/Users/sandeepsuman/Programs/flask-test/test1/infimath/abstract-algebra/{}.md".format(subpath), mode="r", encoding="utf-8")
+        input_file = open("abstract-algebra/{}.md".format(subpath), mode="r", encoding="utf-8")
         text = input_file.read()
         content = markdown.markdown(text, extensions=['tables', 'pymdownx.arithmatex', 'pymdownx.magiclink', 'pymdownx.tasklist'])
         return render_template("course.html", content=content, navigation=data)
