@@ -137,10 +137,10 @@ def generate_course(course, subpath):
 
     if getattr(current_user, course.replace("-", "_")):
         # Open the file and load the file
-        with open('{}/nav.yaml'.format(course)) as f:
+        with open('courses/{}/nav.yaml'.format(course)) as f:
             data = yaml.load(f, Loader=yaml.loader.SafeLoader)
         # files = os.listdir("./{}".format(course))
-        input_file = open("{}/{}.md".format(course, subpath), mode="r", encoding="utf-8")
+        input_file = open("courses/{}/{}.md".format(course, subpath), mode="r", encoding="utf-8")
         text = input_file.read()
         content = markdown.markdown(text, extensions=['tables', 'pymdownx.arithmatex', 'pymdownx.magiclink', 'pymdownx.tasklist', 'pymdownx.critic'])
         return render_template("course.html", content=content, navigation=data)
