@@ -1,5 +1,10 @@
 # pull official base image
-FROM python:3.10.7-slim-buster
+FROM python:slim
+
+## 
+RUN apt update -y
+RUN apt install -y build-essential libpq-dev
+RUN pip install psycopg2-binary --no-binary psycopg2-binary
 
 # set work directory
 WORKDIR /usr/src/app

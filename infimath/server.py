@@ -5,12 +5,14 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 from flask_migrate import Migrate
 import markdown, yaml
 
+list_courses = ['linear_algebra', 'abstract_algebra']
+
 db = SQLAlchemy()
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'secret-key-goes-here'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://hello_flask:hello_flask@localhost:5432/hello_flask_dev'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db' #'postgresql://hello_flask:hello_flask@db:5432/hello_flask_dev'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 migrate = Migrate(app, db)
@@ -129,28 +131,20 @@ def home():
     user = current_user
     return render_template("index.html", user=user)
 
-
-# @app.route("/linear-algebra")
-# @login_required
-# def show_course():
-#     if current_user.linear_algebra:
-#         return render_template("course.html")
-#     else:
-#         return "You are not enrolled in the course. <strong>Contact administrator.</strong>"
-
-
-@app.route("/abstract-algebra/<path:subpath>")
+@app.route('/<path:course>/<path:subpath>')
 @login_required
-def abstract_algebra(subpath):
-    if current_user.abstract_algebra:
+def generate_course(course, subpath):
+
+    if getattr(current_user, course.replace("-", "_")):
         # Open the file and load the file
-        with open('abstract-algebra/nav.yaml') as f:
+        with open('{}/nav.yaml'.format(course)) as f:
             data = yaml.load(f, Loader=yaml.loader.SafeLoader)
-        # files = os.listdir("./abstract-algebra")
-        input_file = open("abstract-algebra/{}.md".format(subpath), mode="r", encoding="utf-8")
+        # files = os.listdir("./{}".format(course))
+        input_file = open("{}/{}.md".format(course, subpath), mode="r", encoding="utf-8")
         text = input_file.read()
-        content = markdown.markdown(text, extensions=['tables', 'pymdownx.arithmatex', 'pymdownx.magiclink', 'pymdownx.tasklist'])
+        content = markdown.markdown(text, extensions=['tables', 'pymdownx.arithmatex', 'pymdownx.magiclink', 'pymdownx.tasklist', 'pymdownx.critic'])
         return render_template("course.html", content=content, navigation=data)
+    
     else:
         return "You are not enrolled in the course. <strong>Contact administrator.</strong>"
         
